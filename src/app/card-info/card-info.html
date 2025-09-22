@@ -1,7 +1,13 @@
 <div class="flex space-x-6 overflow-x-auto">
     <div 
         *ngFor="let card of cardList"
-        class="px-5 py-2 bg-stone-200 rounded-md w-1/3"
+        [ngClass]="{
+            'w-full': cardList.length === 1,
+            'w-1/2': cardList.length === 2,
+            'w-1/3': cardList.length === 3,
+            'w-1/4': cardList.length >= 4
+        }"
+        class="px-5 py-2 bg-stone-200 rounded-md"
     >
         <h5 class="text-xl text-gray-900 leading-relaxed">{{ card.title }}</h5>
         <p class="text-lg text-gray-600 leading-relaxed whitespace-pre-line">{{ card.details }}</p>
