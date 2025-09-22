@@ -1,13 +1,17 @@
-<div class="relative inline-block text-left">
-  <button (click)="isOpen = !isOpen" 
-          class="px-4 py-2 bg-blue-600 text-white rounded-md">
-    Menu
-  </button>
-
-  <div *ngIf="isOpen" 
-       class="absolute right-0 mt-2 w-40 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5">
-    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile</a>
-    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Settings</a>
-    <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+<button (click)="toggleDropdown()" class="w-full my-2 px-6 py-1 border-gray-300 border-2 rounded-md text-left">
+  <div class="text-xl text-gray-700 italic leading-relaxed">
+    {{ contentHeader }}
   </div>
-</div>
+
+  <div
+    [ngClass]="{
+      'max-h-0 opacity-0 overflow-hidden': !showContent,
+      'max-h-96 opacity-100': showContent
+    }"
+    class="transition-all duration-300 ease-in-out my-2 px-0 py-0 border-gray-400 border-t"
+    >
+    <div class="text-lg text-gray-600 leading-relaxed">
+      {{ contentDetails }}
+    </div>
+  </div>
+</button>
