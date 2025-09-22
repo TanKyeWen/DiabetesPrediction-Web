@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   templateUrl: './dropdown-info.html',
   styleUrls: ['./dropdown-info.css'],
-  standalone: true
 })
 export class DropdownInfo {
   showContent = false;
