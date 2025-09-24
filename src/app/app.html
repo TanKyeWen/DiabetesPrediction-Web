@@ -8,8 +8,8 @@
     </div>
 
     <div class="space-x-6 pr-3">
-      <button id="tab-home" class="tab-btn text-gray-800 text-xl hover:text-blue-600 font-medium">Home</button>
-      <button id="tab-predict" class="tab-btn text-gray-800 text-xl hover:text-blue-600">Predict</button>
+      <a routerLink="/" id="tab-home" class="tab-btn text-gray-800 text-xl hover:text-blue-600 font-medium">Home</a>
+      <a routerLink="/predict" id="tab-predict" class="tab-btn text-gray-800 text-xl hover:text-blue-600">Predict</a>
     </div>
   </nav>
 
@@ -46,6 +46,15 @@
       [cardList] = "causes"
       >
     </app-card-info>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-6 pt-5">
+    <h2 class="text-3xl font-bold mb-3">Statistics</h2>
+
+    <app-scatter-chart
+      countryName = "Malaysia"
+      >
+    </app-scatter-chart>
   </section>
 
   <div class="pb-10"></div>

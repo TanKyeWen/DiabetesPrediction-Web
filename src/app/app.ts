@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DropdownInfo } from './dropdown-info/dropdown-info';
 import { CardInfo } from './card-info/card-info';
+import { ScatterChart } from './scatter-chart/scatter-chart';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DropdownInfo, CardInfo],
+  imports: [RouterOutlet, DropdownInfo, CardInfo, ScatterChart],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
