@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild, SimpleChanges } from '@angular/core';
 import { Chart, ChartConfiguration, ChartType, registerables } from 'chart.js';
 
 Chart.register(...registerables);
@@ -21,22 +21,32 @@ export class ScatterChart implements OnInit{
   @ViewChild('chartCanvas', { static: true }) chartCanvas!: ElementRef<HTMLCanvasElement>;
   
   private chart: Chart | undefined;
-  
-  // Your data
-  data: ChartData[] = [
-    { year: 2000, amount_in_thousands: 597 },
-    { year: 2011, amount_in_thousands: 2000 },
-    { year: 2024, amount_in_thousands: 4800 }
-  ];
+
+  data: ChartData[] = [];
 
   ngOnInit(): void {
+    this.updateData();
     this.createChart();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['statistic'] && !changes['statistic'].firstChange) {
+      this.updateData();
+      this.createChart();
+    }
   }
 
   ngOnDestroy(): void {
     if (this.chart) {
       this.chart.destroy();
     }
+  }
+
+  private updateData(): void {
+    this.data = this.statistic.map(item => ({
+      year: item.year.toString(),
+      amount_in_thousands: item.amount_in_thousands
+    }));
   }
 
   private createChart(): void {
@@ -110,7 +120,7 @@ export class ScatterChart implements OnInit{
                 size: 12
               },
               callback: function(value) {
-                return value + 'k';
+                return value;
               }
             },
             title: {
