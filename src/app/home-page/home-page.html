@@ -1,0 +1,43 @@
+<section class="max-w-5xl mx-auto px-6 pt-10">
+    <h2 class="text-4xl font-bold mb-3">What is Diabetes?</h2>
+    <p class="text-xl text-gray-700 leading-relaxed">Diabetes is a chronic condition where the body has difficulty regulating blood glucose (sugar). It develops when your pancreas doesn't make enough insulin or any at all, or when your body isn’t responding to the effects of insulin properly.</p>
+
+    <app-dropdown-info
+        contentHeader = "What is Glucose?"
+        contentDetails = "Glucose is a simple sugar, the body's main source of energy (ATP). It can be obtained by eating food that contains carbohydrates which are then broken down into glucose for the body to absorb."
+        >
+    </app-dropdown-info>
+
+    <app-dropdown-info
+        contentHeader = "What is Insulin?"
+        contentDetails = "Insulin is a hormone produced by the pancreas that regulates blood glucose (sugar) levels by acting as a key to allow sugar to enter cells for energy."
+        >
+    </app-dropdown-info>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 pt-5">
+    <h2 class="text-3xl font-bold mb-3">Types of Diabetes</h2>
+
+    <app-card-info
+        [cardList] = "diabetesType"
+        >
+    </app-card-info>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 pt-5">
+    <h2 class="text-3xl font-bold mb-3">Causes & Risk Factors</h2>
+
+    <app-card-info
+        [cardList] = "causes"
+        >
+    </app-card-info>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 pt-5">
+    <h2 class="text-3xl font-bold mb-3">Statistics</h2>
+
+    <app-scatter-chart
+        countryName = "Malaysia"
+        >
+    </app-scatter-chart>
+</section>
