@@ -1,0 +1,152 @@
+<form [formGroup]="diabetesPredictionForm" (ngSubmit)="onSubmit()" class="py-8 px-10 space-y-6">
+    <div class="flex space-x-6">
+        <input 
+            id="Age"
+            type="number"
+            formControlName="Age"
+            placeholder="Age"
+            class="px-4 py-6 h-10 w-1/2 border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('Age')"
+        >
+        <input 
+            id="Pregnancy"
+            type="number"
+            formControlName="Pregnancy"
+            placeholder="Pregnancy"
+            class="px-4 py-6 h-10 w-1/2 border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('Pregnancy')"
+        >
+    </div>
+
+    <div class="flex space-x-6">
+        <input 
+            id="Weight"
+            formControlName="Weight"
+            placeholder="Weight (kg)"
+            class="px-4 py-6 h-10 w-1/2 border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('Weight')"
+        >
+        <input 
+            id="Height"
+            formControlName="Height"
+            placeholder="Height (cm)"
+            class="px-4 py-6 h-10 w-1/2 border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('Height')"
+        >
+    </div>
+
+    <div class="space-y-6">
+        <input 
+            id="Glucose"
+            formControlName="Glucose"
+            placeholder="Glucose (mg/dL)"
+            class="px-4 py-6 mb-0 h-10 w-full border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('Glucose')"
+        >
+        <app-dropdown-info
+            contentHeader="How to Measure Glucose (mg/dL)?"
+            contentDetails="Capillary blood glucose test or Venous (plasma) blood glucose test.<br> 
+                <a href='https://my.clevelandclinic.org/health/diagnostics/12363-blood-glucose-test'
+                    class='text-blue-600 hover:text-blue-800 underline'
+                >More Info</a>"
+            >
+        </app-dropdown-info>
+    </div>
+
+    <div class="space-y-6">
+        <input 
+            id="BloodPressure"
+            formControlName="BloodPressure"
+            placeholder="BloodPressure (DIA. mmhg)"
+            class="px-4 py-6 mb-0 h-10 w-full border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('BloodPressure')"
+        >
+        <app-dropdown-info
+            contentHeader="How to Measure BloodPressure (DIA. mmhg)?"
+            contentDetails="Sphygmomanometry.  
+                <a href='https://www.physio-pedia.com/Sphygmomanometer'
+                    class='text-blue-600 hover:text-blue-800 underline'
+                >More Info</a>"
+            >
+        </app-dropdown-info>
+    </div>
+
+    <div class="space-y-6">
+        <input 
+            id="SkinThickness"
+            formControlName="SkinThickness"
+            placeholder="SkinThickness (mm)"
+            class="px-4 py-6 mb-0 h-10 w-full border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('SkinThickness')"
+        >
+        <app-dropdown-info
+            contentHeader="How to Measure SkinThickness (mm)?"
+            contentDetails="
+                <a href='https://www.ptdirect.com/training-delivery/client-assessment/taking-skin-fold-body-fat-measurements'
+                    class='text-blue-600 hover:text-blue-800 underline'
+                >Follow This Link</a>"
+            >
+        </app-dropdown-info>
+    </div>
+
+    <div class="space-y-6">
+        <input 
+            id="Insulin"
+            formControlName="Insulin"
+            placeholder="Insulin (mu U/ml)"
+            class="px-4 py-6 mb-0 h-10 w-full border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('Insulin')"
+        >
+        <app-dropdown-info
+            contentHeader="How to Measure Insulin (mu U/ml)?"
+            contentDetails="Take a Blood Test.  
+                <a href='https://medlineplus.gov/lab-tests/insulin-in-blood/'
+                    class='text-blue-600 hover:text-blue-800 underline'
+                >More Info</a>"
+            >
+        </app-dropdown-info>
+    </div>
+
+    <div class="space-y-6">
+        <input 
+            id="DiabetesPeedigreeFunction"
+            formControlName="DiabetesPeedigreeFunction"
+            placeholder="DiabetesPeedigreeFunction"
+            class="px-4 py-6 mb-0 h-10 w-full border-2 border-neutral-400 rounded-lg text-3xl placeholder-zinc-400 text-zinc-600
+                    focus:ring-2 focus:ring-blue-200 focus:border-blue-200 transition-colors"
+            [class.border-red-500]="isFieldInvalid('DiabetesPeedigreeFunction')"
+        >
+        <app-dropdown-info
+            contentHeader="How to Measure DiabetesPeedigreeFunction?"
+            contentDetails="DPF = (Σ each relative's weight x indicator) / ( Σ weights )"
+            >
+        </app-dropdown-info>
+    </div>
+
+    <div class="flex justify-between">
+        <button
+            type="button"
+            (click)="resetForm()"
+            class="w-1/4 py-2 px-4 bg-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-300 focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 transition-colors"
+        >
+            Reset Form
+        </button>
+
+        <button
+            type="submit"
+            [disabled]="diabetesPredictionForm.invalid"
+            class="w-1/4 py-3 px-4 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed"
+        >
+            <span *ngIf="!diabetesPredictionForm.invalid">Submit Information</span>
+            <span *ngIf="diabetesPredictionForm.invalid">Please Complete Form</span>
+        </button>
+    </div>
+</form>
