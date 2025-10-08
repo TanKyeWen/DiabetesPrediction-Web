@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, output } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DropdownInfo } from '../dropdown-info/dropdown-info';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,8 @@ import { Diabetes } from '../models/diabetes.model';
 })
 
 export class FormSection implements OnInit{
-  predictedResult: any = null
+  predictedResult: string = '';
+  hasDiabetes = output<string>();
   private predictDiabetes = inject(PredictDiabetesServices)   
   private fb = inject(FormBuilder)
 
@@ -34,13 +35,19 @@ export class FormSection implements OnInit{
     
   }
 
+  sendData(data: any){
+    this.hasDiabetes.emit(data);
+  }
+
   onSubmit(): void{
     const formData: Diabetes = this.diabetesPredictionForm.value;
 
     this.predictDiabetes.getPrediction(formData).subscribe({
       next: (response) => {
         console.log('Prediction Result: ', response);
-        this.predictedResult = response
+        this.predictedResult = response.Result.toString();
+
+        this.sendData(this.predictedResult);
       },
       error: (err) => {
         console.error('Error: ', err);
