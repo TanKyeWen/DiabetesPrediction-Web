@@ -1,49 +1,51 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DropdownInfo } from '../dropdown-info/dropdown-info';
 import { CommonModule } from '@angular/common';
-
-interface DiabetesField {
-  Pregnancy: number;
-  Glucose: number;
-  BloodPressure: number;
-  SkinThickness: number;
-  Insulin: number;
-  Weight: number;
-  Height: number;
-  DiabetesPeedigreeFunction: number;
-  Age: number;
-}
+import { PredictDiabetesServices } from '../services/predict-diabetes.service';
+import { Diabetes } from '../models/diabetes.model';
 
 @Component({
   selector: 'app-form-section',
   imports: [ReactiveFormsModule, CommonModule, DropdownInfo],
   templateUrl: './form-section.html',
-  styleUrl: './form-section.css'
+  styleUrl: './form-section.css',
+  providers: [PredictDiabetesServices]
 })
-export class FormSection implements OnInit{
-  diabetesPredictionForm: FormGroup;
 
-  constructor(private fb: FormBuilder){
-    this.diabetesPredictionForm = this.fb.group({
-      Pregnancy: ['', [Validators.required, Validators.min(0), Validators.max(25)]],
-      Glucose: ['', [Validators.required, Validators.min(0.0000001), Validators.max(150)]],
-      BloodPressure: ['', [Validators.required, Validators.min(0.0000001), Validators.max(150)]],
-      SkinThickness: ['', [Validators.required, Validators.min(1), Validators.max(150)]],
-      Insulin: ['', [Validators.required, Validators.min(0.0000001), Validators.max(150)]],
-      Weight: ['', [Validators.required, Validators.min(1), Validators.max(450)]],
-      Height: ['', [Validators.required, Validators.min(50), Validators.max(250)]],
-      DiabetesPeedigreeFunction: ['', [Validators.required, Validators.min(0.078), Validators.max(2.42)]],
-      Age: ['', [Validators.required, Validators.min(1), Validators.max(125)]],
-    })
-  }
+export class FormSection implements OnInit{
+  predictedResult: any = null
+  private predictDiabetes = inject(PredictDiabetesServices)   
+  private fb = inject(FormBuilder)
+
+  diabetesPredictionForm: FormGroup = this.fb.group({
+    Pregnancy: ['', [Validators.required, Validators.min(0), Validators.max(25)]],
+    Glucose: ['', [Validators.required, Validators.min(0.0000001), Validators.max(150)]],
+    BloodPressure: ['', [Validators.required, Validators.min(0.0000001), Validators.max(150)]],
+    SkinThickness: ['', [Validators.required, Validators.min(1), Validators.max(150)]],
+    Insulin: ['', [Validators.required, Validators.min(0.0000001), Validators.max(150)]],
+    Weight: ['', [Validators.required, Validators.min(1), Validators.max(450)]],
+    Height: ['', [Validators.required, Validators.min(50), Validators.max(250)]],
+    DiabetesPeedigreeFunction: ['', [Validators.required, Validators.min(0.078), Validators.max(2.42)]],
+    Age: ['', [Validators.required, Validators.min(1), Validators.max(125)]],
+  })
 
   ngOnInit(): void {
-      
+    
   }
 
   onSubmit(): void{
-    console.log("Submit Form")
+    const formData: Diabetes = this.diabetesPredictionForm.value;
+
+    this.predictDiabetes.getPrediction(formData).subscribe({
+      next: (response) => {
+        console.log('Prediction Result: ', response);
+        this.predictedResult = response
+      },
+      error: (err) => {
+        console.error('Error: ', err);
+      }
+    })
   }
 
   resetForm(): void{

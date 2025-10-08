@@ -10,7 +10,7 @@
   },
   "include": [
     "src/**/*.ts"
-  ],
+, "src/app/models/Diabetes.model"  ],
   "exclude": [
     "src/**/*.spec.ts"
   ]
